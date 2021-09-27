@@ -16,16 +16,16 @@ class Piece:
 class Board:
 
     def __init__(self):
-        self.board_key = [
-            ['R', 'K', 'B', 'Q', 'K', 'B', 'K', 'R'],
-            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
-            ['-', '-', '-', '-', '-', '-', '-', '-'],
-            ['-', '-', '-', '-', '-', '-', '-', '-'],
-            ['-', '-', '-', '-', '-', '-', '-', '-'],
-            ['-', '-', '-', '-', '-', '-', '-', '-'],
-            ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
-            ['R', 'K', 'B', 'K', 'Q', 'B', 'K', 'R']]
-        self.board = self.init_board(self.board_key)
+        # self.board_key = [
+        #     ['R', 'K', 'B', 'Q', 'K', 'B', 'K', 'R'],
+        #     ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+        #     ['-', '-', '-', '-', '-', '-', '-', '-'],
+        #     ['-', '-', '-', '-', '-', '-', '-', '-'],
+        #     ['-', '-', '-', '-', '-', '-', '-', '-'],
+        #     ['-', '-', '-', '-', '-', '-', '-', '-'],
+        #     ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+        #     ['R', 'K', 'B', 'K', 'Q', 'B', 'K', 'R']]
+        self.board = self.init_board()
         self.path = 'C:/Users/12158/Documents/chromedriver.exe'
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--ignore-certificate-errors')
@@ -34,7 +34,7 @@ class Board:
         self.move_number = 1
         self.play()
 
-    def init_board(self, board):
+    def init_board(self):
         key = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
         out = []
         temp = []
@@ -42,7 +42,6 @@ class Board:
             temp.clear()
             out.append(temp)
             for j in range(7):
-                let = str(board[i][j])
                 x = key[j]
                 y = i + 1
                 new = Piece(x, y)
