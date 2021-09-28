@@ -13,19 +13,12 @@ class Piece:
         self.x_position = x
         self.x_position = y
 
+
 class Board:
 
     def __init__(self):
-        # self.board_key = [
-        #     ['R', 'K', 'B', 'Q', 'K', 'B', 'K', 'R'],
-        #     ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
-        #     ['-', '-', '-', '-', '-', '-', '-', '-'],
-        #     ['-', '-', '-', '-', '-', '-', '-', '-'],
-        #     ['-', '-', '-', '-', '-', '-', '-', '-'],
-        #     ['-', '-', '-', '-', '-', '-', '-', '-'],
-        #     ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
-        #     ['R', 'K', 'B', 'K', 'Q', 'B', 'K', 'R']]
-        self.board = self.init_board()
+        self.board_key = []
+        self.board = []
         self.path = 'C:/Users/12158/Documents/chromedriver.exe'
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--ignore-certificate-errors')
@@ -34,18 +27,25 @@ class Board:
         self.move_number = 1
         self.play()
 
-    def init_board(self):
+    # Create two 2d-arrays
+    # Returns an 8x8 array of Piece objects in starting positions
+    # Also creates an 8x8 array where each string is the notation of that square
+    def init(self):
         key = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
         out = []
+        filler = []
         temp = []
         for i in range(7, 0, -1):
+            filler.clear()
+            out.append(filler)
             temp.clear()
-            out.append(temp)
+            self.board_key.append(temp)
             for j in range(7):
                 x = key[j]
                 y = i + 1
                 new = Piece(x, y)
-                temp.append(new)
+                filler.append(new)
+                temp.append(x + str(y))
         return out
 
     def start_game(self):
@@ -62,16 +62,9 @@ class Board:
         while not keyboard.is_pressed('q'):
             last_move = self.get_move()
             self.move_number += 1
-            self.driver.quit()
-            keyboard.wait('esc')
+        self.driver.quit()
+        keyboard.wait('esc')
 
     def get_enemy_move(self, input):
         lets = ['K', 'Q', 'R', 'B', 'N']
         xpos = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
-
-
-
-
-
-
-
