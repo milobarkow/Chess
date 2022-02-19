@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class Piece:
-
+    """ A chess piece class """
     def __init__(self, x, y, n):
         self.x_position = x
         self.x_position = y
@@ -16,7 +16,7 @@ class Piece:
 
 
 class Board:
-
+    """ A chess board class on chess.com """
     def __init__(self):
         self.board = []
         self.path = 'C:/Users/12158/Documents/chromedriver.exe'
